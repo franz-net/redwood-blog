@@ -63,14 +63,14 @@ export const handler = async (event, context) => {
 
   const resetPasswordOptions = {
     // handler() is invoked after the password has been successfully updated in
-    // the database. Returning anything truthy will automatically log the user
+    // the database. Returning anything truthy will automatically logs the user
     // in. Return `false` otherwise, and in the Reset Password page redirect the
     // user to the login page.
     handler: (user) => {
       return user
     },
 
-    // If `false` then the new password MUST be different from the current one
+    // If `false` then the new password MUST be different than the current one
     allowReusedPassword: true,
 
     errors: {
@@ -124,7 +124,7 @@ export const handler = async (event, context) => {
     db: db,
 
     // The name of the property you'd call on `db` to access your user table.
-    // i.e. if your Prisma model is named `User` this value would be `user`, as in `db.user`
+    // ie. if your Prisma model is named `User` this value would be `user`, as in `db.user`
     authModelAccessor: 'user',
 
     // A map of what dbAuth calls a field to what your database calls it.
@@ -139,23 +139,18 @@ export const handler = async (event, context) => {
       resetTokenExpiresAt: 'resetTokenExpiresAt',
     },
 
-    // Specifies attributes on the cookie that dbAuth sets in order to remember
-    // who is logged in. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#restrict_access_to_cookies
-    cookie: {
-      HttpOnly: true,
-      Path: '/',
-      SameSite: 'Strict',
-      Secure: process.env.NODE_ENV !== 'development',
-
-      // If you need to allow other domains (besides the api side) access to
-      // the dbAuth session cookie:
-      // Domain: 'example.com',
-    },
-
     forgotPassword: forgotPasswordOptions,
     login: loginOptions,
     resetPassword: resetPasswordOptions,
     signup: signupOptions,
+
+    cookie: {
+      HttpOnly: true,
+      Path: '/',
+      SameSite: 'Strict',
+      Secure: true,
+      // Domain: 'example.com',
+    },
   })
 
   return await authHandler.invoke()

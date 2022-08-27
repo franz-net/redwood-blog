@@ -1,6 +1,5 @@
-import { MetaTags } from "@redwoodjs/web";
-
-import ArticleCell from "src/components/ArticleCell";
+import { MetaTags } from '@redwoodjs/web'
+import ArticleCell from 'src/components/ArticleCell'
 
 const ArticlePage = ({ id }) => {
   return (
@@ -9,7 +8,7 @@ const ArticlePage = ({ id }) => {
 
       <ArticleCell id={id} />
     </>
-  );
-};
+  )
+}
 
-export default ArticlePage;
+export default ArticlePage

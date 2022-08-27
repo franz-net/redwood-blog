@@ -1,7 +1,7 @@
 import ArticlePage from './ArticlePage'
 
-export const generated = (args) => {
-  return <ArticlePage {...args} />
+export const generated = () => {
+  return <ArticlePage id={1} />
 }
 
 export default { title: 'Pages/ArticlePage' }

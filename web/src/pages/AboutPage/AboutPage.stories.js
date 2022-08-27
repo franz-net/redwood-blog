@@ -1,7 +1,7 @@
 import AboutPage from './AboutPage'
 
-export const generated = (args) => {
-  return <AboutPage {...args} />
+export const generated = () => {
+  return <AboutPage />
 }
 
 export default { title: 'Pages/AboutPage' }
